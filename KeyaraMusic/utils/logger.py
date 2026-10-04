@@ -1,0 +1,54 @@
+# =============================================================================
+#  Copyright (c) 2026 Saksham Swaroop (@truenakshu)  |  GitHub: VIP-saksham
+#  LinkedIn: sakshamswaroop
+#
+#  All rights reserved. This source code is the private property of the
+#  author. Copying, modifying, redistributing or deploying any part of this
+#  file WITHOUT the author's written permission is strictly prohibited.
+#  For licensing / permission: https://t.me/truenakshu
+# =============================================================================
+
+from pyrogram.enums import ParseMode
+
+from KeyaraMusic import app
+from KeyaraMusic.utils.database import is_on_off
+from config import LOG_GROUP_ID
+
+
+async def play_logs(message, streamtype):
+    if await is_on_off(2):
+        logger_text = f"""
+<b>{app.mention} ᴘʟᴀʏ ʟᴏɢ</b>
+
+<b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
+<b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
+<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
+
+<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
+<b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
+<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}
+
+<b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
+<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}"""
+        if message.chat.id != LOG_GROUP_ID:
+            try:
+                await app.send_message(
+                    chat_id=LOG_GROUP_ID,
+                    text=logger_text,
+                    parse_mode=ParseMode.HTML,
+                )
+            except:
+                pass
+        return
+
+
+# ©️ Copyright Reserved - @truenakshu  Saksham Swaroop
+
+# ===========================================
+# ©️ 2025 Saksham Swaroop (aka @truenakshu)
+# 🔗 GitHub : https://github.com/VIP-saksham/KeyaraMusic
+# 📢 Telegram Channel : https://t.me/ShrutiBots
+# ===========================================
+
+
+# ❤️ Love From ShrutiBots 
